@@ -1,13 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route } from 'react-router';
+import { IndexRoute, Router, Route } from 'react-router';
 import { Provider } from 'react-redux';
 import App from './components/App';
-import PoweredBy from './components/Powered-by';
+import Issues from './containers/Issues';
 import About from './components/About';
 
-import { oauth } from 'panoptes-client';
-import { config } from './constants/config';
+import { base } from './constants/base';
 
 import configureStore from './store';
 const store = configureStore();
@@ -18,17 +17,14 @@ import Styles from './styles/main.styl';
 
 window.React = React;
 
-oauth.init(config.panoptesAppId)
-  .then(function () {
-    ReactDOM.render(
-      <Provider store={store}>
-        <Router>
-          <Route path="/" component={App}>
-            <Route path="/about" component={About}/>
-            <Route path="/poweredby" component={PoweredBy}/>
-          </Route>
-        </Router>
-      </Provider>
-      , document.getElementById('root')
-    );
-});
+ReactDOM.render(
+  <Provider store={store}>
+    <Router>
+      <Route path="/" component={App}>
+        <IndexRoute component={Issues} />
+        <Route path="/about" component={About}/>
+      </Route>
+    </Router>
+  </Provider>
+  , document.getElementById('root')
+);

@@ -1,17 +1,15 @@
-import { Component, PropTypes } from 'react';
+import { PropTypes } from 'react';
 
-
-export default class LoginButton extends Component {
-
-  render() {
-    const login = this.props.login;
+const LoginButton = (props) => {
+    const classNames = 'btn btn-default navbar-btn navbar-right';
+    const login = props.login;
     return (
-      <button type="submit" onClick={login}>Login</button>
+      <button className={classNames} onClick={login}>Login</button>
     );
-  }
-
 }
 
 LoginButton.propTypes = {
   login: PropTypes.func.isRequired
 };
+
+export { LoginButton as default }

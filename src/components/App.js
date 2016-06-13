@@ -1,27 +1,24 @@
 import React from 'react';
 import { Link } from 'react-router';
 import packageJSON from '../../package.json';
-
 import HeaderAuth from './HeaderAuth';
 
-export default class App extends React.Component {
-  returnSomething(something) {
-    // this is only for testing purposes. Check /test/components/App-test.js
-    return something;
-  }
-  render() {
-    const version = packageJSON.version;
+import firebase from 'firebase';
+import base from '../constants/base';
 
+firebase.initializeApp(base);
+
+export default class App extends React.Component {
+  render() {
     return (
       <div>
         <header className="site-header">
-          <h1 className="title">React Starterify {version}</h1>
+          <h1 className="title"><Link to="/">VoX - Vote Zooniverse next features</Link></h1>
           <Link to="/about" className="link">About</Link>
-          <Link to="/poweredby" className="link">Powered by</Link>
-          <HeaderAuth />
+          <HeaderAuth base={base} />
         </header>
         <section className="content-section">
-          {this.props.children || 'Welcome to React Starterify'}
+          {this.props.children || 'Welcome to VoX'}
         </section>
       </div>
     );
@@ -29,4 +26,5 @@ export default class App extends React.Component {
 }
 App.propTypes = {
   children: React.PropTypes.object,
+  base: React.PropTypes.object,
 };
