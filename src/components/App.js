@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import packageJSON from '../../package.json';
-import HeaderAuth from './HeaderAuth';
+import Auth from '../containers/Auth';
 
 import firebase from 'firebase';
 import base from '../constants/base';
@@ -15,7 +15,7 @@ export default class App extends React.Component {
         <header className="site-header">
           <h1 className="title"><Link to="/">VoX - Vote Zooniverse next features</Link></h1>
           <Link to="/about" className="link">About</Link>
-          <HeaderAuth base={base} />
+          <Auth base={base} />
         </header>
         <section className="content-section">
           {this.props.children || 'Welcome to VoX'}

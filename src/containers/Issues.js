@@ -1,7 +1,7 @@
 import { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { fetchIssues, saveIssues } from '../actions/issue';
+import { fetchIssuesFromGH, saveIssues, fetchIssuesFromDB } from '../actions/issue';
 
 import IssueList from '../components/IssueList'
 
@@ -10,8 +10,7 @@ class Issues extends Component {
   componentDidMount() {
     const { dispatch, issues } = this.props;
     if (!issues.data.length && !issues.loading) {
-      dispatch(fetchIssues())
-      .then(array => dispatch(saveIssues(array)));
+      return dispatch(fetchIssuesFromGH())
     }
   }
 
